@@ -15,7 +15,7 @@ typedef circular_buf_t* cbuf_handle_t;
 /// Requires: buffer is not NULL, size > 0 (size > 1 for the threadsafe
 //  version, because it holds size - 1 elements)
 /// Ensures: me has been created and is returned in an empty state
-cbuf_handle_t circular_buf_init(uint8_t* buffer, size_t size);
+cbuf_handle_t circular_buf_init(size_t size);
 
 /// Free a circular buffer structure
 /// Requires: me is valid and created by circular_buf_init

@@ -30,10 +30,12 @@ static inline size_t advance_headtail_value(size_t value, size_t max)
 
 #pragma mark - APIs -
 
-cbuf_handle_t circular_buf_init(uint8_t* buffer, size_t size)
+cbuf_handle_t circular_buf_init(size_t size)
 {
-	assert(buffer && size > 1);
-
+	assert(size > 1);
+	size += 1; // extra one slot to indicate queue full state
+	uint8_t *buffer = malloc(sizeof(int) * size);
+	assert(buffer);
 	cbuf_handle_t cbuf = malloc(sizeof(circular_buf_t));
 	assert(cbuf);
 
@@ -49,6 +51,7 @@ cbuf_handle_t circular_buf_init(uint8_t* buffer, size_t size)
 void circular_buf_free(cbuf_handle_t me)
 {
 	assert(me);
+	free(me->buffer);
 	free(me);
 }
 

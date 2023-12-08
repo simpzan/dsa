@@ -30,7 +30,7 @@ static cbuf_handle_t handle_ = NULL;
 
 static int circular_buffer_setup(void** __unused state)
 {
-	handle_ = circular_buf_init(circular_buffer_storage_, CIRCULAR_BUFFER_SIZE);
+	handle_ = circular_buf_init(CIRCULAR_BUFFER_SIZE);
 
 	return 0;
 }
@@ -48,7 +48,7 @@ void circular_buffer_init_test(void** __unused state)
 	assert_non_null(handle_);
 	assert_true(circular_buf_empty(handle_));
 	assert_false(circular_buf_full(handle_));
-	assert_int_equal(circular_buf_capacity(handle_), CIRCULAR_BUFFER_SIZE-1);
+	assert_int_equal(circular_buf_capacity(handle_), CIRCULAR_BUFFER_SIZE);
 }
 
 void circular_buf_put_get_test(void** __unused state)
