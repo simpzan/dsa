@@ -192,8 +192,12 @@ typedef void (*fn)(void** __unused state);
 typedef int (*setup_fn)(void** __unused state);
 typedef int (*teardown_fn)(void** __unused state);
 void cmocka_unit_test_setup_teardown(fn test, setup_fn setup, teardown_fn teardown) {
+	printf("test %p\n", test);
 	int ret = setup(NULL);
-	if (ret) return;
+	if (ret) {
+		printf("setup %p failed\n", setup);
+		return;
+	}
 	test(NULL);
 	teardown(NULL);
 }
