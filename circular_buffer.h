@@ -5,11 +5,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-/// Opaque circular buffer structure
-typedef struct circular_buf_t circular_buf_t;
-
 /// Handle type, the way users interact with the API
-typedef circular_buf_t* cbuf_handle_t;
+typedef struct circular_buf_t* cbuf_handle_t;
 
 /// Pass in a storage buffer and size, returns a circular buffer handle
 /// Requires: buffer is not NULL, size > 0 (size > 1 for the threadsafe

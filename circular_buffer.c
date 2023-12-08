@@ -36,7 +36,7 @@ cbuf_handle_t circular_buf_init(size_t size)
 	size += 1; // extra one slot to indicate queue full state
 	uint8_t *buffer = malloc(sizeof(int) * size);
 	assert(buffer);
-	cbuf_handle_t cbuf = malloc(sizeof(circular_buf_t));
+	cbuf_handle_t cbuf = malloc(sizeof(struct circular_buf_t));
 	assert(cbuf);
 
 	cbuf->buffer = buffer;
